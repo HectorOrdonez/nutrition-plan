@@ -4,13 +4,10 @@ use Illuminate\Database\Seeder;
 
 class UserSeeder extends Seeder
 {
-    /**
-     * Run the database seeds.
-     *
-     * @return void
-     */
     public function run()
     {
+        DB::statement("TRUNCATE TABLE users");
+
         $user = new \App\User();
         $user->name = 'root';
         $user->email = 'root@com';

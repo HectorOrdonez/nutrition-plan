@@ -11,6 +11,9 @@ class DatabaseSeeder extends Seeder
      */
     public function run()
     {
-         $this->call(UserSeeder::class);
+        Eloquent::unguard();
+
+        $this->call(UserSeeder::class);
+        $this->call(FoodSeeder::class);
     }
 }
