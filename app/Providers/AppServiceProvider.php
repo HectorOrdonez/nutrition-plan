@@ -23,6 +23,11 @@ class AppServiceProvider extends ServiceProvider
      */
     public function register()
     {
-        //
+        if ($this->app->environment('production')) {
+            // Production only providers
+        } else {
+            // Non-production only providers
+            $this->app->register('Laralib\L5scaffold\GeneratorsServiceProvider');
+        }
     }
 }
