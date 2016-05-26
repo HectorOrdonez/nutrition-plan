@@ -2,6 +2,7 @@
     <ul class="nav navbar-nav">
         <li><a href="{{ url('/dashboard') }}">Dashboard</a></li>
         <li><a href="{{ route('foods.index') }}">Foods</a></li>
+        <li><a href="{{ route('dishes.index') }}">Dishes</a></li>
     </ul>
 
     <ul class="nav navbar-nav navbar-right">

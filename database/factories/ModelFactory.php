@@ -29,3 +29,9 @@ $factory->define(\App\Food::class, function (Faker\Generator $faker) {
         'fats' => $faker->numberBetween(1, 10000)
     ];
 });
+
+$factory->define(\App\Dish::class, function (Faker\Generator $faker) {
+    return [
+        'name' => $faker->lastName,
+    ];
+});

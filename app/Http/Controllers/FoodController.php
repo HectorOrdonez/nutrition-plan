@@ -31,16 +31,20 @@ class FoodController extends Controller
 
     /**
      * Store a newly created resource in storage.
+     *
+     * @param Request $request
+     *
+     * @return \Illuminate\Http\RedirectResponse
      */
     public function store(Request $request)
     {
         $food = new Food();
 
-        $food->name = $request->input("name");
-        $food->calories = $request->input("calories");
-        $food->proteins = $request->input("proteins");
-        $food->fats = $request->input("fats");
-        $food->carbohydrates = $request->input("carbohydrates");
+        $food->name = $request->input('name');
+        $food->calories = $request->input('calories');
+        $food->proteins = $request->input('proteins');
+        $food->fats = $request->input('fats');
+        $food->carbohydrates = $request->input('carbohydrates');
 
         $food->save();
 
@@ -86,11 +90,11 @@ class FoodController extends Controller
     {
         $food = Food::findOrFail($id);
 
-        $food->name = $request->input("name");
-        $food->calories = $request->input("calories");
-        $food->proteins = $request->input("proteins");
-        $food->fats = $request->input("fats");
-        $food->carbohydrates = $request->input("carbohydrates");
+        $food->name = $request->input('name');
+        $food->calories = $request->input('calories');
+        $food->proteins = $request->input('proteins');
+        $food->fats = $request->input('fats');
+        $food->carbohydrates = $request->input('carbohydrates');
 
         $food->save();
 

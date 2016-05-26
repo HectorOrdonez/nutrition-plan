@@ -3,7 +3,7 @@
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateFoodsTable extends Migration
+class CreateDishTable extends Migration
 {
     /**
      * Run the migrations.
@@ -12,13 +12,9 @@ class CreateFoodsTable extends Migration
      */
     public function up()
     {
-        Schema::create('foods', function (Blueprint $table) {
+        Schema::create('dishes', function (Blueprint $table) {
             $table->increments('id');
             $table->string('name');
-            $table->float('calories');
-            $table->float('proteins');
-            $table->float('fats');
-            $table->float('carbohydrates');
             $table->timestamps();
         });
     }
@@ -30,6 +26,6 @@ class CreateFoodsTable extends Migration
      */
     public function down()
     {
-        Schema::drop('foods');
+        Schema::drop('dishes');
     }
 }
