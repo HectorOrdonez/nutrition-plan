@@ -1,13 +1,15 @@
 <?php namespace App\Http\Controllers;
 
 use App\Http\Requests;
-use App\Http\Controllers\Controller;
-
 use App\Food;
 use Illuminate\Http\Request;
+use Illuminate\Http\Response;
 
 class FoodController extends Controller
 {
+    const MESSAGE_CREATED = 'Food created successfully';
+    const MESSAGE_UPDATED = 'Food updated successfully';
+    const MESSAGE_DELETED = 'Food deleted successfully';
 
     /**
      * Display a listing of the resource.
@@ -42,7 +44,9 @@ class FoodController extends Controller
 
         $food->save();
 
-        return redirect()->route('foods.index')->with('message', 'Item created successfully.');
+        return redirect()
+            ->route('foods.index')
+            ->with(['flash_message' => self::MESSAGE_CREATED]);
     }
 
     /**
@@ -90,7 +94,9 @@ class FoodController extends Controller
 
         $food->save();
 
-        return redirect()->route('foods.index')->with('message', 'Item updated successfully.');
+        return redirect()
+            ->route('foods.index')
+            ->with('flash_message', self::MESSAGE_UPDATED);
     }
 
     /**
@@ -104,6 +110,8 @@ class FoodController extends Controller
         $food = Food::findOrFail($id);
         $food->delete();
 
-        return redirect()->route('foods.index')->with('message', 'Item deleted successfully.');
+        return redirect()
+            ->route('foods.index')
+            ->with('flash_message', self::MESSAGE_DELETED);
     }
 }

@@ -2,11 +2,16 @@
   "private": true,
   "scripts": {
     "prod": "gulp --production",
-    "dev": "gulp watch"
+    "dev": "gulp watch",
+    "postinstall": "gulp --production"
   },
-  "devDependencies": {
+  "dependencies": {
     "gulp": "^3.9.1",
+    "gulp-sass": "^2.2.0",
     "laravel-elixir": "^5.0.0",
-    "bootstrap-sass": "^3.0.0"
+    "bootstrap-sass": "^3.0.0",
+    "jquery": "^1.11.1",
+    "elixir-coffeeify": "^1.0.3",
+    "font-awesome": "^4.5.0"
   }
 }

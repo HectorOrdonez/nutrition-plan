@@ -2,7 +2,9 @@
 
 namespace App\Providers;
 
+use Barryvdh\LaravelIdeHelper\IdeHelperServiceProvider;
 use Illuminate\Support\ServiceProvider;
+use Laralib\L5scaffold\GeneratorsServiceProvider;
 
 class AppServiceProvider extends ServiceProvider
 {
@@ -27,7 +29,9 @@ class AppServiceProvider extends ServiceProvider
             // Production only providers
         } else {
             // Non-production only providers
-            $this->app->register('Laralib\L5scaffold\GeneratorsServiceProvider');
+            $this->app->register(GeneratorsServiceProvider::class);
+            $this->app->register(IdeHelperServiceProvider::class);
+
         }
     }
 }

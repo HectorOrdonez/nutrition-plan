@@ -19,6 +19,6 @@ Route::auth();
 
 Route::get('/home', 'HomeController@index');
 
-Route::group(['middleware' => ['web', 'auth']], function () {
+Route::group(['middleware' => ['auth']], function () {
     Route::resource('foods', 'FoodController');
 });

@@ -1,2 +1,23 @@
-// @import "node_modules/bootstrap-sass/assets/stylesheets/bootstrap";
+@import 'partials/helpers';
+@import 'partials/variables';
+@import 'partials/mixins';
 
+// General styles
+
+@import 'core';
+
+// Components styles
+@import 'components/alert';
+@import 'components/button';
+@import 'components/header';
+@import 'components/navbar';
+@import 'components/well';
+
+// Blog layouts
+@import 'views/layouts/app';
+
+// View specific styles
+
+// Importing vendors lastly so the defined variables will be used
+@import "node_modules/bootstrap-sass/assets/stylesheets/bootstrap";
+@import "node_modules/font-awesome/scss/font-awesome";
