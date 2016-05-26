@@ -28,4 +28,20 @@ class Ingredient extends Model
     {
         return $this->belongsTo(Dish::class);
     }
+
+    public function getCaloriesAttribute(){
+        return $this->food->calories * $this->amount;
+    }
+
+    public function getProteinsAttribute(){
+        return $this->food->proteins * $this->amount;
+    }
+
+    public function getFatsAttribute(){
+        return $this->food->fats * $this->amount;
+    }
+
+    public function getCarbohydratesAttribute(){
+        return $this->food->carbohydrates * $this->amount;
+    }
 }
