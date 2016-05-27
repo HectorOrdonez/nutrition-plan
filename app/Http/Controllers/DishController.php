@@ -6,6 +6,10 @@ use App\Dish;
 
 class DishController extends Controller
 {
+    const MESSAGE_CREATED = 'Dish created successfully';
+    const MESSAGE_UPDATED = 'Dish updated successfully';
+    const MESSAGE_DELETED = 'Dish deleted successfully';
+
     /**
      * @todo Filter dishes by own and shared
      */
@@ -24,5 +28,22 @@ class DishController extends Controller
         $dish = Dish::find($id);
 
         return view('dishes.show', compact('dish'));
+    }
+
+    /**
+     * Destroys the dish and its ingredients
+     *
+     * @param $id
+     * @return \Illuminate\Http\RedirectResponse
+     */
+    public function destroy($id)
+    {
+        $dish = Dish::find($id);
+        $dish->delete();
+
+        return redirect()
+            ->route('dishes.index')
+            ->with('flash_message', self::MESSAGE_DELETED);
+
     }
 }
