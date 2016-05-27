@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Food;
 use App\Http\Requests\IngredientRequest;
 use App\Ingredient;
 
@@ -12,6 +13,7 @@ class DishIngredientController extends Controller
     const MESSAGE_CREATED = 'Ingredient created successfully';
     const MESSAGE_UPDATED = 'Ingredient updated successfully';
     const MESSAGE_DELETED = 'Ingredient deleted successfully';
+    const ERROR_FOOD_NOT_FOUND = 'Selected food does not exist';
 
     /**
      * @todo For Api
@@ -39,6 +41,18 @@ class DishIngredientController extends Controller
      */
     public function store(Requests\CreateIngredientRequest $ingredientRequest, $dishId)
     {
+        $foodId = $ingredientRequest->get('food_id');
+
+        if(!$food = Food::find($foodId))
+        {
+            return redirect()
+                ->route('dishes.show', $dishId)
+                ->with([
+                    'flash_message' => self::ERROR_FOOD_NOT_FOUND,
+                    'flash_message_type' => 'alert-danger',
+                ]);
+        }
+
         $ingredient = new Ingredient();
         $ingredient->dish_id = $ingredientRequest->get('dish_id');
         $ingredient->food_id = $ingredientRequest->get('food_id');

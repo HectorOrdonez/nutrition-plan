@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Dish;
+use App\Http\Requests\CreateDishRequest;
 
 class DishController extends Controller
 {
@@ -45,6 +46,31 @@ class DishController extends Controller
     }
 
     /**
+     * Opens the dish creator
+     *
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
+     */
+    public function create()
+    {
+        return view('dishes.create');
+    }
+
+    /**
+     * @param CreateDishRequest $dishRequest
+     * @return \Illuminate\Http\RedirectResponse
+     */
+    public function store(CreateDishRequest $dishRequest)
+    {
+        $dish = new Dish();
+        $dish->name = $dishRequest->get('name');
+        $dish->save();
+
+        return redirect()
+            ->route('dishes.show', $dish->id)
+            ->with('flash_message', self::MESSAGE_CREATED);
+    }
+
+    /**
      * Destroys the dish and its ingredients
      *
      * @param $id
@@ -58,6 +84,5 @@ class DishController extends Controller
         return redirect()
             ->route('dishes.index')
             ->with('flash_message', self::MESSAGE_DELETED);
-
     }
 }
