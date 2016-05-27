@@ -64,5 +64,7 @@
             </div>
         @endif
 
+        {!! link_to(route('dishes.index'), 'Back', ['class' => 'btn btn-link']) !!}
+
     </div>
 @endsection
