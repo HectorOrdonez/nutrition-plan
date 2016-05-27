@@ -62,12 +62,11 @@
                                 <i class="glyphicon glyphicon-eye-open"></i>
                                 View
                             </a>
-                            <a class="btn btn-xs btn-warning" href="{{ route('foods.edit', $dish->id) }}">
+                            <a class="btn btn-xs btn-warning" data-toggle="modal" data-target="#ingredient-modal-{{$ingredient->id}}">
                                 <i class="glyphicon glyphicon-edit"></i>
                                 Edit
                             </a>
-
-                            <form class="form-inline" action="{{ route('foods.destroy', $dish->id) }}" method="POST" onsubmit="return confirm('Delete? Are you sure?')? true:false;">
+                            <form class="form-inline" action="{{ route('dishes.ingredients.destroy', [$dish->id, $ingredient->id]) }}" method="POST" onsubmit="return confirm('Delete? Are you sure?')? true:false;">
                                 <input type="hidden" name="_method" value="DELETE">
                                 <input type="hidden" name="_token" value="{{ csrf_token() }}">
                                 <button type="submit" class="btn btn-xs btn-danger">
@@ -77,6 +76,12 @@
                             </form>
                         </td>
                     </tr>
+
+                    @include('dishes.partials.ingredient-edit-modal', [
+                    'ingredientId' => $ingredient->id,
+                    'dishId' => $dish->id,
+                    'ingredientAmount' => $ingredient->amount
+                    ])
                 @endforeach
             </table>
         @else
