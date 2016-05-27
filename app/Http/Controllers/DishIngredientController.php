@@ -3,7 +3,9 @@
 namespace App\Http\Controllers;
 
 use App\Food;
+use App\Http\Requests\CreateIngredientRequest;
 use App\Http\Requests\IngredientRequest;
+use App\Http\Requests\UpdateIngredientRequest;
 use App\Ingredient;
 
 use App\Http\Requests;
@@ -35,11 +37,11 @@ class DishIngredientController extends Controller
     }
 
     /**
-     * @param Requests\CreateIngredientRequest $ingredientRequest
+     * @param CreateIngredientRequest $ingredientRequest
      * @param int $dishId
      * @return \Illuminate\Http\RedirectResponse
      */
-    public function store(Requests\CreateIngredientRequest $ingredientRequest, $dishId)
+    public function store(CreateIngredientRequest $ingredientRequest, $dishId)
     {
         $foodId = $ingredientRequest->get('food_id');
 
@@ -65,12 +67,12 @@ class DishIngredientController extends Controller
     }
 
     /**
-     * @param IngredientRequest $ingredientRequest
+     * @param UpdateIngredientRequest $ingredientRequest
      * @param int $dishId
      * @param int $ingredientId
      * @return \Illuminate\Http\RedirectResponse
      */
-    public function update(IngredientRequest $ingredientRequest, $dishId, $ingredientId)
+    public function update(UpdateIngredientRequest $ingredientRequest, $dishId, $ingredientId)
     {
         $ingredient = Ingredient::where('dish_id', $dishId)
             ->where('id', $ingredientId)

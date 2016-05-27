@@ -21,10 +21,6 @@
 
                 <form action="#">
                     <div class="form-group">
-                        <label for="nome">ID</label>
-                        <p class="form-control-static"></p>
-                    </div>
-                    <div class="form-group">
                         <label for="name">NAME</label>
                         <p class="form-control-static">{{$food->name}}</p>
                     </div>

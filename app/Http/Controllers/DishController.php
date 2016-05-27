@@ -3,7 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Dish;
-use App\Http\Requests\CreateDishRequest;
+use App\Http\Requests\DishRequest;
 
 class DishController extends Controller
 {
@@ -46,6 +46,24 @@ class DishController extends Controller
     }
 
     /**
+     * Update the dish
+     *
+     * @param DishRequest $dishRequest
+     * @param int $id
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
+     */
+    public function update(DishRequest $dishRequest, $id)
+    {
+        $dish = Dish::find($id);
+        $dish->name = $dishRequest->get('name');
+        $dish->save();
+
+        return redirect()
+            ->route('dishes.show', $dish->id)
+            ->with('flash_message', self::MESSAGE_UPDATED);
+    }
+
+    /**
      * Opens the dish creator
      *
      * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
@@ -56,10 +74,10 @@ class DishController extends Controller
     }
 
     /**
-     * @param CreateDishRequest $dishRequest
+     * @param DishRequest $dishRequest
      * @return \Illuminate\Http\RedirectResponse
      */
-    public function store(CreateDishRequest $dishRequest)
+    public function store(DishRequest $dishRequest)
     {
         $dish = new Dish();
         $dish->name = $dishRequest->get('name');

@@ -62,12 +62,8 @@
                             {{ $ingredient->carbohydrates }}
                         </td>
                         <td>
-                            {{-- @todo Edit and Delete should affect the ingredient --}}
-                            <a class="btn btn-xs btn-primary" href="{{ route('foods.show', $dish->id) }}">
-                                <i class="glyphicon glyphicon-eye-open"></i>
-                                View
-                            </a>
-                            <a class="btn btn-xs btn-warning" data-toggle="modal" data-target="#ingredient-modal-{{$ingredient->id}}">
+                            <a class="btn btn-xs btn-warning" data-toggle="modal"
+                               data-target="#ingredient-modal-{{$ingredient->id}}">
                                 <i class="glyphicon glyphicon-edit"></i>
                                 Edit
                             </a>
@@ -92,6 +88,28 @@
                     ])
                 @endforeach
             </table>
+
+            <div class="panel panel-default">
+                <div class="panel-heading">Totals</div>
+                <div class="panel-body">
+                    <table class="table">
+                        <thead>
+                        <tr>
+                            <td>Calories</td>
+                            <td>Proteins</td>
+                            <td>Fats</td>
+                            <td>Carbohydrates</td>
+                        </tr>
+                        </thead>
+                        <tr>
+                            <td>{{ $dish->calories }}</td>
+                            <td>{{ $dish->proteins }}</td>
+                            <td>{{ $dish->fats }}</td>
+                            <td>{{ $dish->carbohydrates }}</td>
+                        </tr>
+                    </table>
+                </div>
+            </div>
         @else
             <div class="warning">
                 No ingredients in this dish!
