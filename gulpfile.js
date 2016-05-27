@@ -15,7 +15,7 @@ elixir(function(mix) {
     elixir(function (mix) {
         mix
             .sass('app.scss') // compiling all sass files in sass directory
-            .coffee(['app.coffee', 'components']) // compiling all coffee files in coffee directory
+            .coffee(['app.coffee', 'components', 'specifics']) // compiling all coffee files in coffee directory
             .browserify('app.js', 'public/js', 'public/js')
             .version(['css/app.css', 'js/app.js']);
 

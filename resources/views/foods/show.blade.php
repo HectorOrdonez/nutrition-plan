@@ -3,7 +3,7 @@
 @section('content')
     <div class="container">
         <div class="page-header">
-            <h1>Foods / Show #{{$food->id}}</h1>
+            <h1>Foods #{{$food->id}}: {{$food->name}}</h1>
             <form action="{{ route('foods.destroy', $food->id) }}" method="POST" style="display: inline;"
                   onsubmit="if(confirm('Delete? Are you sure?')) { return true } else {return false };">
                 <input type="hidden" name="_method" value="DELETE">

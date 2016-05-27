@@ -4,7 +4,7 @@
     <div class="container">
         <div class="page-header clearfix">
             <h1>
-                <i class="glyphicon glyphicon-align-justify"></i>Dishes
+                <i class="glyphicon glyphicon-align-justify"></i> Dishes
                 <a class="btn btn-success pull-right" href="{{ route('dishes.create') }}">
                     <i class="glyphicon glyphicon-plus"></i>
                     Create

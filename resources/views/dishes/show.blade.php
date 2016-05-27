@@ -11,11 +11,16 @@
                 <input type="hidden" name="_token" value="{{ csrf_token() }}">
 
                 <div class="btn-group pull-right" role="group">
-                    <a class="btn btn-warning btn-group" role="group" href="{{ route('dishes.edit', $dish->id) }}">
+                    <a class="btn btn-success btn-secondary" data-toggle="modal" data-target="#ingredient-modal-add">
+                        <i class="glyphicon glyphicon-plus"></i> Add ingredient
+                    </a>
+
+                    <a class="btn btn-warning btn-secondary" href="{{ route('dishes.edit', $dish->id) }}">
                         <i class="glyphicon glyphicon-edit"></i>
                         Edit
                     </a>
-                    <button type="submit" class="btn btn-danger">
+
+                    <button type="submit" class="btn btn-secondary btn-danger">
                         Delete
                         <i class="glyphicon glyphicon-trash"></i>
                     </button>
@@ -66,7 +71,10 @@
                                 <i class="glyphicon glyphicon-edit"></i>
                                 Edit
                             </a>
-                            <form class="form-inline" action="{{ route('dishes.ingredients.destroy', [$dish->id, $ingredient->id]) }}" method="POST" onsubmit="return confirm('Delete? Are you sure?')? true:false;">
+
+                            <form class="form-inline"
+                                  action="{{ route('dishes.ingredients.destroy', [$dish->id, $ingredient->id]) }}"
+                                  method="POST" onsubmit="return confirm('Delete? Are you sure?')? true:false;">
                                 <input type="hidden" name="_method" value="DELETE">
                                 <input type="hidden" name="_token" value="{{ csrf_token() }}">
                                 <button type="submit" class="btn btn-xs btn-danger">
@@ -91,6 +99,7 @@
         @endif
 
         {!! link_to(route('dishes.index'), 'Back', ['class' => 'btn btn-link']) !!}
-
     </div>
+
+    @include('dishes.partials.ingredient-add-modal', ['dishId' => $dish->id])
 @endsection

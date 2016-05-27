@@ -33,11 +33,21 @@ class DishIngredientController extends Controller
     }
 
     /**
+     * @param Requests\CreateIngredientRequest $ingredientRequest
      * @param int $dishId
+     * @return \Illuminate\Http\RedirectResponse
      */
-    public function store($dishId)
+    public function store(Requests\CreateIngredientRequest $ingredientRequest, $dishId)
     {
+        $ingredient = new Ingredient();
+        $ingredient->dish_id = $ingredientRequest->get('dish_id');
+        $ingredient->food_id = $ingredientRequest->get('food_id');
+        $ingredient->amount = $ingredientRequest->get('amount');
+        $ingredient->save();
 
+        return redirect()
+            ->route('dishes.show', $dishId)
+            ->with('flash_message', self::MESSAGE_CREATED);
     }
 
     /**
