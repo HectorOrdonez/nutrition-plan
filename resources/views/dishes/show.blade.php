@@ -33,6 +33,7 @@
                     <td>Proteins</td>
                     <td>Fats</td>
                     <td>Carbohydrates</td>
+                    <td>Actions</td>
                 </tr>
                 </thead>
                 @foreach($dish->ingredients as $ingredient)
@@ -54,6 +55,26 @@
                         </td>
                         <td>
                             {{ $ingredient->carbohydrates }}
+                        </td>
+                        <td>
+                            {{-- @todo Edit and Delete should affect the ingredient --}}
+                            <a class="btn btn-xs btn-primary" href="{{ route('foods.show', $dish->id) }}">
+                                <i class="glyphicon glyphicon-eye-open"></i>
+                                View
+                            </a>
+                            <a class="btn btn-xs btn-warning" href="{{ route('foods.edit', $dish->id) }}">
+                                <i class="glyphicon glyphicon-edit"></i>
+                                Edit
+                            </a>
+
+                            <form class="form-inline" action="{{ route('foods.destroy', $dish->id) }}" method="POST" onsubmit="return confirm('Delete? Are you sure?')? true:false;">
+                                <input type="hidden" name="_method" value="DELETE">
+                                <input type="hidden" name="_token" value="{{ csrf_token() }}">
+                                <button type="submit" class="btn btn-xs btn-danger">
+                                    <i class="glyphicon glyphicon-trash"></i>
+                                    Delete
+                                </button>
+                            </form>
                         </td>
                     </tr>
                 @endforeach

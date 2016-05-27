@@ -46,9 +46,8 @@
                     </div>
                 </form>
 
-                <a class="btn btn-link" href="{{ route('foods.index') }}"><i class="glyphicon glyphicon-backward"></i>
+                <a class="btn btn-link" href="{{ URL::previous() }}"><i class="glyphicon glyphicon-backward"></i>
                     Back</a>
-
             </div>
         </div>
     </div>

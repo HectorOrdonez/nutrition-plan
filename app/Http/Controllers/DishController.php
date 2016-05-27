@@ -31,6 +31,20 @@ class DishController extends Controller
     }
 
     /**
+     * Edits the dish
+     *
+     * @param int $id
+     *
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
+     */
+    public function edit($id)
+    {
+        $dish = Dish::find($id);
+
+        return view('dishes.edit', compact('dish'));
+    }
+
+    /**
      * Destroys the dish and its ingredients
      *
      * @param $id
