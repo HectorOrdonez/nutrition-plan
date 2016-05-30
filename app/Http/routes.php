@@ -22,6 +22,8 @@ Route::get('/home', 'HomeController@index');
 Route::group(['middleware' => ['auth']], function () {
     Route::get('profile', 'ProfileController@show')->name('profile.show');
     Route::put('profile/update', 'ProfileController@update')->name('profile.update');
+    
+    Route::get('agenda', 'AgendaController@show')->name('agenda.show');
 
     Route::resource('foods', 'FoodController');
     Route::resource('dishes', 'DishController');

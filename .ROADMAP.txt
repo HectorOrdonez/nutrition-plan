@@ -1,4 +1,4 @@
-- User profile: set desired amounts of calories, proteins, fats and carbs per day
+DONE - User profile: set desired amounts of calories, proteins, fats and carbs per day
 - User Agenda
   - Select day
     You can select a day in the agenda. You will see there the selected, if any, meal types and the foods and dishes on them, if any

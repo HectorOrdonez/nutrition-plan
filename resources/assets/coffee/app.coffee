@@ -1,5 +1,7 @@
 window.$ = window.jQuery = require('jquery')
 require('bootstrap-sass')
+require('moment')
+require('fullcalendar')
 
 $(document).ready ->
   console.log('ready')
