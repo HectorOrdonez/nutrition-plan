@@ -1,0 +1,8 @@
+- User profile: set desired amounts of calories, proteins, fats and carbs per day
+- User Agenda
+  - Select day
+    You can select a day in the agenda. You will see there the selected, if any, meal types and the foods and dishes on them, if any
+    - Add meal group
+      Meal groups contain foods or dishes
+      - Add food or dish
+        You can add food or dishes to the meal

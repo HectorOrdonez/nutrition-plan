@@ -20,6 +20,8 @@ Route::auth();
 Route::get('/home', 'HomeController@index');
 
 Route::group(['middleware' => ['auth']], function () {
+    Route::get('profile', 'ProfileController@show');
+
     Route::resource('foods', 'FoodController');
     Route::resource('dishes', 'DishController');
     Route::resource('dishes.ingredients', 'DishIngredientController');
