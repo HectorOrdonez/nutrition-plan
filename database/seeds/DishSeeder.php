@@ -4,13 +4,16 @@ use App\Dish;
 use App\Food;
 use App\Ingredient;
 use Illuminate\Database\Seeder;
+use Src\Support\TruncableTable;
 
 class DishSeeder extends Seeder
 {
+    use TruncableTable;
+    
     public function run()
     {
-        DB::statement("TRUNCATE TABLE ingredients");
-        DB::statement("TRUNCATE TABLE dishes");
+        $this->truncateTable('ingredients');
+        $this->truncateTable('dishes');
 
         factory(Dish::class, 20)->create()->each(function ($dish) {
             $ingredientsAmount = rand(2, 6);

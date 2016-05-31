@@ -1,12 +1,15 @@
 <?php
 
 use Illuminate\Database\Seeder;
+use Src\Support\TruncableTable;
 
 class UserSeeder extends Seeder
 {
+    use TruncableTable;
+    
     public function run()
     {
-        DB::statement("TRUNCATE TABLE users");
+        $this->truncateTable('users');
 
         $user = new \App\User();
         $user->name = 'root';
