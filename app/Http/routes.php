@@ -26,7 +26,11 @@ Route::group(['middleware' => ['auth']], function () {
     Route::get('agenda', 'AgendaController@show')->name('agenda.show');
 
     Route::resource('foods', 'FoodController');
+    
     Route::resource('dishes', 'DishController');
+    
     Route::resource('dishes.ingredients', 'DishIngredientController');
+    
+    Route::resource('meals', 'MealController');
 
 });
