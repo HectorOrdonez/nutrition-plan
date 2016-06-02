@@ -7,6 +7,8 @@ use App\Http\Requests\UpdateMealTypeRequest;
 use App\MealType;
 
 use App\Http\Requests;
+use Illuminate\Http\RedirectResponse;
+use Illuminate\View\View;
 
 class MealTypeController extends Controller
 {
@@ -26,8 +28,9 @@ class MealTypeController extends Controller
 
     /**
      * Shows a meal type
-     * 
+     *
      * @param int $id
+     * @return View
      */
     public function show($id)
     {
@@ -48,10 +51,11 @@ class MealTypeController extends Controller
 
     /**
      * Creates a new meal type
-     * 
+     *
      * @param CreateMealTypeRequest $request
-     * 
+     *
      * @todo Store nutrition target parameters
+     * @return RedirectResponse
      */
     public function store(CreateMealTypeRequest $request)
     {
@@ -66,8 +70,9 @@ class MealTypeController extends Controller
 
     /**
      * Shows the meal type edition page
-     * 
+     *
      * @param $id
+     * @return View
      */
     public function edit($id)
     {
@@ -81,8 +86,9 @@ class MealTypeController extends Controller
      *
      * @param int $id
      * @param UpdateMealTypeRequest $request
-     * 
+     *
      * @todo Store nutrition target parameters
+     * @return RedirectResponse
      */
     public function update($id, UpdateMealTypeRequest $request)
     {
@@ -97,8 +103,9 @@ class MealTypeController extends Controller
 
     /**
      * Destroys given meal type
-     * 
+     *
      * @param int $id
+     * @return RedirectResponse
      */
     public function destroy($id)
     {
@@ -108,5 +115,10 @@ class MealTypeController extends Controller
         return redirect()
             ->route('meal-types.index')
             ->with(['flash_message' => self::MESSAGE_DELETED]);
+    }
+
+    public function sort()
+    {
+        die('sorting');
     }
 }

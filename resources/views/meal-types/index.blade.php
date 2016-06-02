@@ -25,6 +25,9 @@
                                         <td>{{$mealType->id}}</td>
                                         <td>{{$mealType->name}}</td>
                                         <td class="text-right">
+                                            <a href="#" class="handle">
+                                                <i class="fa fa-arrows" aria-hidden="true"></i>
+                                            </a>
                                             <a class="btn btn-xs btn-primary"
                                                href="{{ route('meal-types.show', $mealType->id) }}">
                                                 <i class="glyphicon glyphicon-eye-open"></i>
