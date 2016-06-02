@@ -2,6 +2,8 @@ window.$ = window.jQuery = require('jquery')
 require('bootstrap-sass')
 require('moment')
 require('fullcalendar')
+require('fullcalendar')
+require('jquery-ui')
 
 $(document).ready ->
   console.log('ready')

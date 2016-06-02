@@ -19,7 +19,7 @@
                                 </tr>
                                 </thead>
 
-                                <tbody>
+                                <tbody class="sortable">
                                 @foreach($mealTypes as $mealType)
                                     <tr>
                                         <td>{{$mealType->id}}</td>

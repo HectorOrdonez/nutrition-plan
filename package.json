@@ -16,6 +16,7 @@
     "jquery": "^1.11.1",
     "laravel-elixir": "^5.0.0",
     "fullcalendar": "^2.7.2",
-    "moment": "^2.13.0"
+    "moment": "^2.13.0",
+    "jquery-ui": "^1.10.0"
   }
 }
