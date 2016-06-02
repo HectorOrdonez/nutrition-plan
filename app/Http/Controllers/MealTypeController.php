@@ -41,7 +41,9 @@ class MealTypeController extends Controller
      */
     public function create()
     {
-        return view('meal-types.create');
+        $mealType = new MealType();
+        
+        return view('meal-types.create', compact('mealType'));
     }
 
     /**

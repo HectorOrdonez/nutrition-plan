@@ -11,8 +11,8 @@
                 <input type="hidden" name="_token" value="{{ csrf_token() }}">
 
                 <div class="btn-group pull-right" role="group">
-                    {!! Html::decode(link_to(route('meals.create'), '<i class="glyphicon glyphicon-plus"></i> Add meal', ['class' => 'btn btn-success btn-secondary'])) !!}
-                    {!! Html::decode(link_to(route('meals.edit', $mealType->id), '<i class="glyphicon glyphicon-edit"></i> Edit', ['class' => 'btn btn-warning btn-secondary'])) !!}
+                    {!! Html::decode(link_to(route('meal-types.create'), '<i class="glyphicon glyphicon-plus"></i> Add meal', ['class' => 'btn btn-success btn-secondary'])) !!}
+                    {!! Html::decode(link_to(route('meal-types.edit', $mealType->id), '<i class="glyphicon glyphicon-edit"></i> Edit', ['class' => 'btn btn-warning btn-secondary'])) !!}
                     <button type="submit" class="btn btn-secondary btn-danger">Delete <i class="glyphicon glyphicon-trash"></i></button>
                 </div>
             </form>
