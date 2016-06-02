@@ -10,7 +10,6 @@
                     Create
                 </a>
             </h1>
-
         </div>
 
         <div class="row">

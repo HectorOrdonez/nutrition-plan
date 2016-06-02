@@ -2,8 +2,6 @@
 
 namespace App\Http\Requests;
 
-use App\Http\Requests\Request;
-
 class CreateMealTypeRequest extends Request
 {
     /**
@@ -13,7 +11,7 @@ class CreateMealTypeRequest extends Request
      */
     public function authorize()
     {
-        return false;
+        return true;
     }
 
     /**
@@ -24,7 +22,7 @@ class CreateMealTypeRequest extends Request
     public function rules()
     {
         return [
-            //
+            'name' => 'required'
         ];
     }
 }

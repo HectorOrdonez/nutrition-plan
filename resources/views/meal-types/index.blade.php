@@ -37,7 +37,7 @@
                                             </a>
 
                                             <form class="form-inline"
-                                                  action="{{ route('meal-types.destroy', $food->id) }}"
+                                                  action="{{ route('meal-types.destroy', $mealType->id) }}"
                                                   method="POST"
                                                   onsubmit="return confirm('Delete? Are you sure?')? true:false;">
                                                 <input type="hidden" name="_method" value="DELETE">
@@ -52,6 +52,11 @@
                                 @endforeach
                                 </tbody>
                             </table>
+
+                            <a class="btn btn-success pull-right" href="{{ route('meal-types.create') }}">
+                                <i class="glyphicon glyphicon-plus"></i>
+                                Create
+                            </a>
                         @else
                             <h3 class="text-center alert alert-info">Empty!</h3>
                             <div class="text-center">
