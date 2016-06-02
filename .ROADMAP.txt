@@ -6,3 +6,11 @@ DONE - User profile: set desired amounts of calories, proteins, fats and carbs p
       Meal groups contain foods or dishes
       - Add food or dish
         You can add food or dishes to the meal
+
+- Meal Types
+    - Create a meal type
+    - Update a meal type
+    - Delete a meal type
+    - Order meal types
+    - See all meal types
+    - Meal type nutrition targets
