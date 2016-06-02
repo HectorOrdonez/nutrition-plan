@@ -14,8 +14,9 @@
             </a>
 
             <ul class="dropdown-menu" role="menu">
-                <li><a href="{{ route('profile.show') }}"><i class="fa fa-btn fa-user"></i>Profile</a></li>
-                <li><a href="{{ url('/logout') }}"><i class="fa fa-btn fa-sign-out"></i>Logout</a></li>
+                <li><a href="{{ route('profile.show') }}"><i class="fa fa-btn fa-user"></i> Profile</a></li>
+                <li><a href="{{ route('meal-types.index') }}"><i class="fa fa-btn fa-pie-chart"></i> Meal Types</a></li>
+                <li><a href="{{ url('/logout') }}"><i class="fa fa-btn fa-sign-out"></i> Logout</a></li>
             </ul>
         </li>
     </ul>

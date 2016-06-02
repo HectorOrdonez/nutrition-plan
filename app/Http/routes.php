@@ -23,6 +23,8 @@ Route::group(['middleware' => ['auth']], function () {
     Route::get('profile', 'ProfileController@show')->name('profile.show');
     Route::put('profile/update', 'ProfileController@update')->name('profile.update');
     
+    Route::get('dashboard', 'DashboardController@index')->name('dashboard.index');
+    
     Route::get('agenda', 'AgendaController@show')->name('agenda.show');
 
     Route::resource('foods', 'FoodController');
@@ -32,5 +34,6 @@ Route::group(['middleware' => ['auth']], function () {
     Route::resource('dishes.ingredients', 'DishIngredientController');
     
     Route::resource('meals', 'MealController');
-
+    
+    Route::resource('meal-types', 'MealTypeController');
 });
