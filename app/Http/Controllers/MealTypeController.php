@@ -8,6 +8,7 @@ use App\MealType;
 
 use App\Http\Requests;
 use Illuminate\Http\RedirectResponse;
+use Illuminate\Http\Request;
 use Illuminate\View\View;
 
 class MealTypeController extends Controller
@@ -21,7 +22,7 @@ class MealTypeController extends Controller
      */
     public function index()
     {
-        $mealTypes = MealType::all();
+        $mealTypes = MealType::all()->sortBy('position');
 
         return view('meal-types.index', compact('mealTypes'));
     }
@@ -117,8 +118,19 @@ class MealTypeController extends Controller
             ->with(['flash_message' => self::MESSAGE_DELETED]);
     }
 
-    public function sorting()
+    public function sorting(Request $request)
     {
-        die('sorting');
+        $itemList = $request->get('item');
+
+        foreach($itemList as $position => $itemId)
+        {
+            $mealType = MealType::find($itemId);
+            $mealType->position = $position;
+            $mealType->save();
+        }
+
+        return redirect()
+            ->route('meal-types.index')
+            ->with(['flash_message' => self::MESSAGE_DELETED]);
     }
 }

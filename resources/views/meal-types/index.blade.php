@@ -1,5 +1,10 @@
 @extends('layouts.app')
 
+@section('meta_fields')
+    @parent
+    <meta name="csrf-token" content="{{ csrf_token() }}">
+@endsection
+
 @section('content')
     <div class="container">
         <div class="row">
@@ -76,7 +81,7 @@
         setTimeout(function() {
             $(".sortable").sortable({
                 update: function (event, ui) {
-                    var test = $(this).data('url');
+                    var url = $(this).data('url');
                     var data = $(this).sortable('serialize');
 
                     $.post({
@@ -84,7 +89,7 @@
                             'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
                         },
                         data: data,
-                        url: test,
+                        url: url,
                         success: function () {
                             console.log('success');
                         },
