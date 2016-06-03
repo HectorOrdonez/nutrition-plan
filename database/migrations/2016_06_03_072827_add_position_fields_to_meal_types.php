@@ -13,7 +13,9 @@ class AddPositionFieldsToMealTypes extends Migration
     public function up()
     {
         Schema::table('meal_types', function (Blueprint $table) {
-            $table->integer('position');
+            $table->integer('position')
+                ->unsigned()
+                ->nullable();
         });
     }
 
