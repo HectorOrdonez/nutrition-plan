@@ -77,28 +77,4 @@
         </div>
     </div>
 
-    <script type="text/javascript">
-        setTimeout(function() {
-            $(".sortable").sortable({
-                update: function (event, ui) {
-                    var url = $(this).data('url');
-                    var data = $(this).sortable('serialize');
-
-                    $.post({
-                        headers: {
-                            'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-                        },
-                        data: data,
-                        url: url,
-                        success: function () {
-                            console.log('success');
-                        },
-                        error: function () {
-                            console.log('error');
-                        }
-                    })
-                }
-            });
-        }, 3000);
-    </script>
 @endsection

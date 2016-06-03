@@ -1,20 +1,15 @@
-#$ ->
-##  $('.sortable').sortable().bind 'sortupdate', (e, ui) ->
-##    console.log('updated')
-#  $('.sortable').sortable
-#    'containment': 'parent'
-#    'revert': true
-#    'handle': '.handle'
-#    'update': (e, ui) ->
-#      $.post(
-#        'meal-types/sort'
-#        $(this).serialize()
-#        (data, textStatus) ->
-#          console.log('Answered:')
-#          console.log(data)
-#          console.log(textStatus)
-#          if(!data.success)
-#           alert('Something went wrong')
-#          else
-#            alert('done')
-#        'json')
+$ ->
+  $('.sortable').sortable
+    'handle': '.handle'
+    'update': ->
+      url = $(this).data('url')
+      data = $(this).sortable('serialize')
+      
+      $.post(
+        headers:
+          'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+        url: url,
+        data: data,
+        error: ->
+          console.log('Could not sort!')
+      )
