@@ -117,7 +117,7 @@ class MealTypeController extends Controller
             ->with(['flash_message' => self::MESSAGE_DELETED]);
     }
 
-    public function sort()
+    public function sorting()
     {
         die('sorting');
     }

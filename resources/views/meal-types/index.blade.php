@@ -19,9 +19,9 @@
                                 </tr>
                                 </thead>
 
-                                <tbody class="sortable">
+                                <tbody class="sortable" data-url="{{ route('meal-types.sorting') }}">
                                 @foreach($mealTypes as $mealType)
-                                    <tr>
+                                    <tr id="item-{{$mealType->id}}">
                                         <td>{{$mealType->id}}</td>
                                         <td>{{$mealType->name}}</td>
                                         <td class="text-right">
@@ -71,4 +71,29 @@
             </div>
         </div>
     </div>
+
+    <script type="text/javascript">
+        setTimeout(function() {
+            $(".sortable").sortable({
+                update: function (event, ui) {
+                    var test = $(this).data('url');
+                    var data = $(this).sortable('serialize');
+
+                    $.post({
+                        headers: {
+                            'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                        },
+                        data: data,
+                        url: test,
+                        success: function () {
+                            console.log('success');
+                        },
+                        error: function () {
+                            console.log('error');
+                        }
+                    })
+                }
+            });
+        }, 3000);
+    </script>
 @endsection
