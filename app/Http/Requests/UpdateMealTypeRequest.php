@@ -22,7 +22,11 @@ class UpdateMealTypeRequest extends Request
     public function rules()
     {
         return [
-            'name' => 'min:1'
+            'name' => 'string',
+            'calories' => 'numeric|min:0',
+            'proteins' => 'numeric|min:0',
+            'fats' => 'numeric|min:0',
+            'carbohydrates' => 'numeric|min:0',
         ];
     }
 }

@@ -22,7 +22,11 @@ class CreateMealTypeRequest extends Request
     public function rules()
     {
         return [
-            'name' => 'required'
+            'name' => 'required',
+            'calories' => 'required',
+            'proteins' => 'required',
+            'fats' => 'required',
+            'carbohydrates' => 'required',
         ];
     }
 }

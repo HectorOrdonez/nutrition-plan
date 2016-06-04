@@ -23,8 +23,21 @@ class MealTypeController extends Controller
     public function index()
     {
         $mealTypes = MealType::all()->sortBy('position');
+        $totals = [
+            'calories' => 0,
+            'proteins' => 0,
+            'fats' => 0,
+            'carbohydrates' => 0,
+        ];
+        foreach($mealTypes as $mealType)
+        {
+            $totals['calories'] += $mealType->calories;
+            $totals['proteins'] += $mealType->proteins;
+            $totals['fats'] += $mealType->fats;
+            $totals['carbohydrates'] += $mealType->carbohydrates;
+        }
 
-        return view('meal-types.index', compact('mealTypes'));
+        return view('meal-types.index', compact('mealTypes', 'totals'));
     }
 
     /**
@@ -62,6 +75,10 @@ class MealTypeController extends Controller
     {
         $mealType = new MealType();
         $mealType->name = $request->get('name');
+        $mealType->calories = $request->get('calories');
+        $mealType->proteins = $request->get('proteins');
+        $mealType->fats = $request->get('fats');
+        $mealType->carbohydrates = $request->get('carbohydrates');
         $mealType->save();
 
         return redirect()
@@ -95,6 +112,10 @@ class MealTypeController extends Controller
     {
         $mealType = MealType::find($id);
         $mealType->name = $request->get('name');
+        $mealType->calories = $request->get('calories');
+        $mealType->proteins = $request->get('proteins');
+        $mealType->fats = $request->get('fats');
+        $mealType->carbohydrates = $request->get('carbohydrates');
         $mealType->save();
 
         return redirect()
