@@ -34,7 +34,9 @@ Route::group(['middleware' => ['auth']], function () {
     Route::resource('dishes.ingredients', 'DishIngredientController');
     
     Route::resource('meals', 'MealController');
-    
+    Route::resource('meals.dishes', 'MealDishController');
+    Route::resource('meals.foods', 'MealFoodController');
+
     Route::resource('meal-types', 'MealTypeController');
     Route::post('meal-types/sorting', 'MealTypeController@sorting')->name('meal-types.sorting');
 });
