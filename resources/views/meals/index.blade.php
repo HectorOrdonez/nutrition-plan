@@ -29,7 +29,7 @@
                                     <tr>
                                         <td>{{$meal->id}}</td>
                                         <td>{{$meal->name}}</td>
-                                        <td>{{$meal->mealType->name}}</td>
+                                        <td>{{ link_to(route('meal-types.show', $meal->mealType->id), $meal->mealType->name) }}</td>
                                         <td>{{$meal->calories}}</td>
                                         <td>{{$meal->proteins}}</td>
                                         <td>{{$meal->fats}}</td>

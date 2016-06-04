@@ -25,7 +25,9 @@
                 </div>
                 <div class="form-group">
                     <label for="meal-type">Meal type</label>
-                    <p class="form-control-static">{{$meal->mealType->name}}</p>
+                    <p class="form-control-static">
+                        {{ link_to(route('meal-types.show', $meal->mealType->id), $meal->mealType->name) }}
+                    </p>
                 </div>
             </div>
         </div>

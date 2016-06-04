@@ -27,6 +27,6 @@
             </div>
         </div>
 
-        {!! link_to(route('meal-types.index'), 'Back', ['class' => 'btn btn-link']) !!}
+        {!! link_to(URL::previous(), 'Back', ['class' => 'btn btn-link']) !!}
     </div>
 @endsection

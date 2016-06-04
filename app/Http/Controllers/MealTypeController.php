@@ -35,7 +35,7 @@ class MealTypeController extends Controller
      */
     public function show($id)
     {
-        $mealType = MealType::find($id);
+        $mealType = MealType::findOrFail($id);
         
         return view('meal-types.show', compact('mealType'));
     }
