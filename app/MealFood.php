@@ -38,4 +38,24 @@ class MealFood extends Model
     {
         return $this->belongsTo(Meal::class);
     }
+
+    public function getCaloriesAttribute()
+    {
+        return $this->food->calories * $this->amount / 100;
+    }
+
+    public function getProteinsAttribute()
+    {
+        return $this->food->proteins * $this->amount / 100;
+    }
+
+    public function getFatsAttribute()
+    {
+        return $this->food->fats * $this->amount / 100;
+    }
+
+    public function getCarbohydratesAttribute()
+    {
+        return $this->food->carbohydrates * $this->amount / 100;
+    }
 }

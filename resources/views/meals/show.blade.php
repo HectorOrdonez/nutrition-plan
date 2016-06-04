@@ -5,11 +5,7 @@
         <div class="page-header">
             <h1>Meal #{{ $meal->id }}: {{$meal->name}}</h1>
 
-            <form class="form-inline" action="{{ route('meals.destroy', $meal->id) }}" method="POST"
-                  onsubmit="return confirm('Delete? Are you sure?')? true:false;">
-                <input type="hidden" name="_method" value="DELETE">
-                <input type="hidden" name="_token" value="{{ csrf_token() }}">
-
+            {!! Form::open(['url' => route('meals.destroy', $meal->id), 'method' => 'delete', 'class' => 'form-inline', 'onsubmit' => "return confirm('Delete? Are you sure?')? true:false;"]) !!}
                 <div class="btn-group pull-right" role="group">
                     <a class="btn btn-success btn-secondary" data-toggle="modal" data-target="#add-dish-modal">
                         <i class="glyphicon glyphicon-plus"></i> Add dish
@@ -18,9 +14,10 @@
                         <i class="glyphicon glyphicon-plus"></i> Add food
                     </a>
                     {!! Html::decode(link_to(route('meals.edit', $meal->id), '<i class="glyphicon glyphicon-edit"></i> Edit', ['class' => 'btn btn-warning btn-secondary'])) !!}
-                    <button type="submit" class="btn btn-secondary btn-danger">Delete <i class="glyphicon glyphicon-trash"></i></button>
+                    <button type="submit" class="btn btn-secondary btn-danger">Delete <i
+                                class="glyphicon glyphicon-trash"></i></button>
                 </div>
-            </form>
+            {!! Form::close() !!}
         </div>
 
         <div class="row">
@@ -38,83 +35,10 @@
             </div>
         </div>
 
+        @include('meals.partials.table-meal-dishes')
+        @include('meals.partials.table-meal-foods')
 
-        @if(count($meal->dishes) > 0)
-            <table class="table">
-                <thead>
-                <tr>
-                    <td>Name</td>
-                    <td>Calories</td>
-                    <td>Proteins</td>
-                    <td>Fats</td>
-                    <td>Carbohydrates</td>
-                    <td>Actions</td>
-                </tr>
-                </thead>
-                @foreach($meal->dishes as $dish)
-                    <tr>
-                        <td>
-                            {{ link_to(route('dishes.show', $dish->id), $dish->name) }}
-                        </td>
-                        <td>
-                            {{ $dish->calories }}
-                        </td>
-                        <td>
-                            {{ $dish->proteins }}
-                        </td>
-                        <td>
-                            {{ $dish->fats }}
-                        </td>
-                        <td>
-                            {{ $dish->carbohydrates }}
-                        </td>
-                        <td>
-                            <form class="form-inline"
-                                  action="{{ route('meals.dishes.destroy', [$meal->id, $dish->id]) }}"
-                                  method="POST" onsubmit="return confirm('Delete? Are you sure?')? true:false;">
-                                <input type="hidden" name="_method" value="DELETE">
-                                <input type="hidden" name="_token" value="{{ csrf_token() }}">
-                                <button type="submit" class="btn btn-xs btn-danger">
-                                    <i class="glyphicon glyphicon-trash"></i>
-                                    Delete
-                                </button>
-                            </form>
-                        </td>
-                    </tr>
-                @endforeach
-                @foreach($meal->foods as $food)
-                    <tr>
-                        <td>
-                            {{ link_to(route('foods.show', $food->id), $food->name) }}
-                        </td>
-                        <td>
-                            {{ $food->calories }}
-                        </td>
-                        <td>
-                            {{ $food->proteins }}
-                        </td>
-                        <td>
-                            {{ $food->fats }}
-                        </td>
-                        <td>
-                            {{ $food->carbohydrates }}
-                        </td>
-                        <td>
-                            <form class="form-inline"
-                                  action="{{ route('meals.foods.destroy', [$meal->id, $food->id]) }}"
-                                  method="POST" onsubmit="return confirm('Delete? Are you sure?')? true:false;">
-                                <input type="hidden" name="_method" value="DELETE">
-                                <input type="hidden" name="_token" value="{{ csrf_token() }}">
-                                <button type="submit" class="btn btn-xs btn-danger">
-                                    <i class="glyphicon glyphicon-trash"></i>
-                                    Delete
-                                </button>
-                            </form>
-                        </td>
-                    </tr>
-                @endforeach
-            </table>
-
+        @if(count($meal->mealFoods) > 0 or count($meal->dishes) > 0)
             <div class="panel panel-default">
                 <div class="panel-heading">Totals</div>
                 <div class="panel-body">
@@ -138,7 +62,7 @@
             </div>
         @else
             <div class="warning">
-                This meal contains nothing!
+                <h3 class="text-center alert alert-info">This meals contains nothing!</h3>
             </div>
         @endif
 

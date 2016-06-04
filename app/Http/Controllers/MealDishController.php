@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Dish;
 use App\Http\Requests\MealDishRequest;
 
 use App\Http\Requests;

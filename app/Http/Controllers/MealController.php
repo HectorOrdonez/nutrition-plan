@@ -10,9 +10,9 @@ use App\MealType;
 
 class MealController extends Controller
 {
-    const MESSAGE_CREATED = 'Meals created successfully';
-    const MESSAGE_UPDATED = 'Meals updated successfully';
-    const MESSAGE_DELETED = 'Meals deleted successfully';
+    const MESSAGE_CREATED = 'Meal created successfully';
+    const MESSAGE_UPDATED = 'Meal updated successfully';
+    const MESSAGE_DELETED = 'Meal deleted successfully';
 
     public function index()
     {

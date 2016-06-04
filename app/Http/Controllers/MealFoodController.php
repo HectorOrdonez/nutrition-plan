@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\MealFoodRequest;
 use App\Meal;
+use App\MealFood;
 use Illuminate\Http\Request;
 
 use App\Http\Requests;
@@ -16,9 +17,12 @@ class MealFoodController extends Controller
     public function store($mealId, MealFoodRequest $request)
     {
         $meal = Meal::findOrFail($mealId);
-        $foodId = $request->get('food_id');
 
-        $meal->foods()->attach($foodId);
+        $mealFood = new MealFood();
+        $mealFood->meal_id = $meal->id;
+        $mealFood->food_id = $request->get('food_id');
+        $mealFood->amount = $request->get('amount');
+        $mealFood->save();
 
         return redirect()
             ->route('meals.show', $mealId)
@@ -27,11 +31,13 @@ class MealFoodController extends Controller
             ]);
     }
 
-    public function destroy($mealId, $foodId)
+    public function destroy($mealId, $mealFoodId)
     {
-        $meal = Meal::findOrFail($mealId);
+        $mealFood = MealFood::where('meal_id', $mealId)
+            ->where('id', $mealFoodId)
+            ->first();
 
-        $meal->foods()->detach($foodId);
+        $mealFood->delete();
 
         return redirect()
             ->route('meals.show', $mealId)

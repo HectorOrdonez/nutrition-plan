@@ -41,13 +41,12 @@ class Meal extends Model
     }
 
     /**
-     * The foods that belong to this meal
+     * The meal foods that belong to this meal
      */
-    public function foods()
+    public function mealFoods()
     {
-        return $this->belongsTomany(Food::class, 'meal_foods');
+        return $this->hasMany(MealFood::class);
     }
-
 
     /**
      * The dishes that belong to this meal
@@ -55,5 +54,73 @@ class Meal extends Model
     public function dishes()
     {
         return $this->belongsTomany(Dish::class, 'meal_dishes');
+    }
+
+    public function getCaloriesAttribute()
+    {
+        $calories = 0;
+
+        foreach($this->dishes as $dish)
+        {
+            $calories += $dish->calories;
+        }
+
+        foreach($this->mealFoods as $mealFood)
+        {
+            $calories += $mealFood->amount * $mealFood->food->calories / 100;
+        }
+
+        return $calories;
+    }
+
+    public function getProteinsAttribute()
+    {
+        $proteins = 0;
+
+        foreach($this->dishes as $dish)
+        {
+            $proteins += $dish->proteins;
+        }
+
+        foreach($this->mealFoods as $mealFood)
+        {
+            $proteins += $mealFood->amount * $mealFood->food->proteins / 100;
+        }
+
+        return $proteins;
+    }
+
+    public function getFatsAttribute()
+    {
+        $fats = 0;
+
+        foreach($this->dishes as $dish)
+        {
+            $fats += $dish->fats;
+        }
+
+        foreach($this->mealFoods as $mealFood)
+        {
+            $fats += $mealFood->amount * $mealFood->food->fats / 100;
+        }
+
+        return $fats;
+    }
+
+    public function getCarbohydratesAttribute()
+    {
+        $carbohydrates = 0;
+
+        foreach($this->dishes as $dish)
+        {
+            $carbohydrates += $dish->carbohydrates;
+        }
+
+        foreach($this->mealFoods as $mealFood)
+        {
+            $carbohydrates += $mealFood->amount * $mealFood->food->carbohydrates / 100;
+        }
+
+        return $carbohydrates;
     }
 }
