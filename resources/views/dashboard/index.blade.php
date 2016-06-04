@@ -5,10 +5,17 @@
         <div class="row">
             <div class="col-md-10 col-md-offset-1">
                 <div class="panel panel-default">
-                    <div class="panel-heading">Dashboard</div>
+                    <div class="panel-heading">Today menu</div>
 
                     <div class="panel-body">
-                        This is the dashboard content
+                        @foreach($todayMeals as $meal)
+                            <div class="well">
+                                For {{ $meal->mealType->name }}
+                            </div>
+
+                            @include('meals.partials.table-meal-dishes')
+                            @include('meals.partials.table-meal-foods')
+                        @endforeach
                     </div>
                 </div>
             </div>
