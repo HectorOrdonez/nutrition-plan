@@ -29,7 +29,7 @@
                                     <tr>
                                         <td>{{$meal->id}}</td>
                                         <td>{{$meal->name}}</td>
-                                        <td>{{$meal->type}}</td>
+                                        <td>{{$meal->mealType->name}}</td>
                                         <td>{{$meal->calories}}</td>
                                         <td>{{$meal->proteins}}</td>
                                         <td>{{$meal->fats}}</td>
@@ -46,7 +46,7 @@
                                                 Edit
                                             </a>
 
-                                            <form class="form-inline" action="{{ route('meals.destroy', $food->id) }}"
+                                            <form class="form-inline" action="{{ route('meals.destroy', $meal->id) }}"
                                                   method="POST"
                                                   onsubmit="return confirm('Delete? Are you sure?')? true:false;">
                                                 <input type="hidden" name="_method" value="DELETE">
@@ -61,6 +61,11 @@
                                 @endforeach
                                 </tbody>
                             </table>
+
+                            <a class="btn btn-success pull-right" href="{{ route('meals.create') }}">
+                                <i class="glyphicon glyphicon-plus"></i>
+                                Create
+                            </a>
                         @else
                             <h3 class="text-center alert alert-info">Empty!</h3>
                             <div class="text-center">
