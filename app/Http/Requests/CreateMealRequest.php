@@ -25,7 +25,7 @@ class CreateMealRequest extends Request
     {
         return [
             'name' => 'required',
-            'meal-type-id' => 'required'
+            'mealTypeId' => 'required'
         ];
     }
 }

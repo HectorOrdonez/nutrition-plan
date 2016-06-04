@@ -2,7 +2,7 @@
 
 namespace App\Http\Requests;
 
-class UpdateMealTypeRequest extends Request
+class UpdateMealRequest extends Request
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -22,7 +22,8 @@ class UpdateMealTypeRequest extends Request
     public function rules()
     {
         return [
-            'name' => 'min:1'
+            'name' => 'required',
+            'mealTypeId' => 'required',
         ];
     }
 }

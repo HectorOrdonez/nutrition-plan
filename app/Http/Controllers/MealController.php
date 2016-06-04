@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\CreateMealRequest;
+use App\Http\Requests\UpdateMealRequest;
 use App\Meal;
 use App\Http\Requests;
 use App\MealType;
@@ -23,18 +24,19 @@ class MealController extends Controller
     public function create()
     {
         $mealTypes = [];
+        $mealTypeId = 0;
 
         foreach(MealType::all() as $mealType)
         {
             $mealTypes[$mealType->id] = $mealType->name;
         }
 
-        return view('meals.create', compact('mealTypes'));
+        return view('meals.create', compact('mealTypes', 'mealTypeId'));
     }
 
     public function store(CreateMealRequest $request)
     {
-        $mealType = MealType::find($request->get('meal-type-id'));
+        $mealType = MealType::find($request->get('mealTypeId'));
 
         $meal = new Meal();
         $meal->name = $request->get('name');
@@ -55,6 +57,39 @@ class MealController extends Controller
         $meal = Meal::find($id);
 
         return view('meals.show', compact('meal'));
+    }
+
+    public function edit($id)
+    {
+        $meal = Meal::find($id);
+
+        $mealTypes = [];
+        $mealTypeId = $meal->mealType->id;
+
+        foreach(MealType::all() as $mealType)
+        {
+            $mealTypes[$mealType->id] = $mealType->name;
+        }
+
+        return view('meals.edit', [
+            'meal' => $meal,
+            'mealTypes' => $mealTypes,
+            'mealTypeId' => $mealTypeId
+        ]);
+    }
+
+    public function update($id, UpdateMealRequest $request)
+    {
+        $mealType = MealType::find($request->get('mealTypeId'));
+
+        $meal = Meal::find($id);
+        $meal->name = $request->get('name');
+        $meal->mealType()->associate($mealType);
+        $meal->save();
+
+        return redirect()
+            ->route('meals.show', $meal->id)
+            ->with(['flash_message' => self::MESSAGE_UPDATED]);
     }
 
     public function destroy($id)

@@ -6,10 +6,13 @@
     @endif
 </div>
 
-<div class="form-group @if($errors->has('meal-type-id')) has-error @endif">
-    {!! Form::label('meal-type-id', 'Name') !!}
-    {!! Form::select('meal-type-id', $mealTypes, old('meal-type-id'), ['class' => 'form-control']) !!}
-    @if($errors->has("meal-type-id"))
-        <span class="help-block">{{ $errors->first("meal-type-id") }}</span>
+
+{{--{{ dd($mealTypeId) }}--}}
+
+<div class="form-group @if($errors->has('mealTypeId')) has-error @endif">
+    {!! Form::label('mealTypeId', 'Name') !!}
+    {!! Form::select('mealTypeId', $mealTypes, (old('mealTypeId'))? old('mealTypeId'): $mealTypeId , ['class' => 'form-control']) !!}
+    @if($errors->has("mealTypeId"))
+        <span class="help-block">{{ $errors->first("mealTypeId") }}</span>
     @endif
 </div>
