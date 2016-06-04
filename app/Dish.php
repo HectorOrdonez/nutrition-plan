@@ -10,6 +10,18 @@ use Illuminate\Database\Eloquent\Model;
  * @property-read \Illuminate\Database\Eloquent\Collection|\App\Food[] $foods
  * @property-read \Illuminate\Database\Eloquent\Collection|\App\Ingredient[] $ingredients
  * @mixin \Eloquent
+ * @property-read mixed $calories
+ * @property-read mixed $proteins
+ * @property-read mixed $fats
+ * @property-read mixed $carbohydrates
+ * @property integer $id
+ * @property string $name
+ * @property \Carbon\Carbon $created_at
+ * @property \Carbon\Carbon $updated_at
+ * @method static \Illuminate\Database\Query\Builder|\App\Dish whereId($value)
+ * @method static \Illuminate\Database\Query\Builder|\App\Dish whereName($value)
+ * @method static \Illuminate\Database\Query\Builder|\App\Dish whereCreatedAt($value)
+ * @method static \Illuminate\Database\Query\Builder|\App\Dish whereUpdatedAt($value)
  */
 class Dish extends Model
 {
