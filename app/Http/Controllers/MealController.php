@@ -26,7 +26,7 @@ class MealController extends Controller
         $mealTypes = [];
         $mealTypeId = 0;
 
-        foreach(MealType::all() as $mealType)
+        foreach(MealType::all()->sortBy('position') as $mealType)
         {
             $mealTypes[$mealType->id] = $mealType->name;
         }
@@ -66,7 +66,7 @@ class MealController extends Controller
         $mealTypes = [];
         $mealTypeId = $meal->mealType->id;
 
-        foreach(MealType::all() as $mealType)
+        foreach(MealType::all()->sortBy('position') as $mealType)
         {
             $mealTypes[$mealType->id] = $mealType->name;
         }
