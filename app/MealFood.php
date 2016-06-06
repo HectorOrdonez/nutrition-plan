@@ -20,6 +20,12 @@ use Illuminate\Database\Eloquent\Model;
  * @method static \Illuminate\Database\Query\Builder|\App\MealFood whereMealId($value)
  * @method static \Illuminate\Database\Query\Builder|\App\MealFood whereCreatedAt($value)
  * @method static \Illuminate\Database\Query\Builder|\App\MealFood whereUpdatedAt($value)
+ * @property float $amount
+ * @property-read mixed $calories
+ * @property-read mixed $proteins
+ * @property-read mixed $fats
+ * @property-read mixed $carbohydrates
+ * @method static \Illuminate\Database\Query\Builder|\App\MealFood whereAmount($value)
  */
 class MealFood extends Model
 {

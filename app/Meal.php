@@ -29,6 +29,7 @@ use Illuminate\Database\Eloquent\Model;
  * @method static \Illuminate\Database\Query\Builder|\App\Meal whereMealTypeId($value)
  * @method static \Illuminate\Database\Query\Builder|\App\Meal whereCreatedAt($value)
  * @method static \Illuminate\Database\Query\Builder|\App\Meal whereUpdatedAt($value)
+ * @property-read \Illuminate\Database\Eloquent\Collection|\App\MealFood[] $mealFoods
  */
 class Meal extends Model
 {

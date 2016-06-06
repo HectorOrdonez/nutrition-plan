@@ -19,6 +19,14 @@ use Illuminate\Database\Eloquent\Model;
  * @method static \Illuminate\Database\Query\Builder|\App\MealType whereCreatedAt($value)
  * @method static \Illuminate\Database\Query\Builder|\App\MealType whereUpdatedAt($value)
  * @method static \Illuminate\Database\Query\Builder|\App\MealType wherePosition($value)
+ * @property float $calories
+ * @property float $proteins
+ * @property float $fats
+ * @property float $carbohydrates
+ * @method static \Illuminate\Database\Query\Builder|\App\MealType whereCalories($value)
+ * @method static \Illuminate\Database\Query\Builder|\App\MealType whereProteins($value)
+ * @method static \Illuminate\Database\Query\Builder|\App\MealType whereFats($value)
+ * @method static \Illuminate\Database\Query\Builder|\App\MealType whereCarbohydrates($value)
  */
 class MealType extends Model
 {

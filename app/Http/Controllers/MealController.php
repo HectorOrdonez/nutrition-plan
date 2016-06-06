@@ -55,8 +55,52 @@ class MealController extends Controller
     public function show($id)
     {
         $meal = Meal::find($id);
+        $advices = $this->getAdvicesByMealAndMealType($meal, $meal->mealType);
 
-        return view('meals.show', compact('meal'));
+        return view('meals.show', compact('meal', 'advices'));
+    }
+
+    /**
+     * Shows advices for meal construction depending on nutrition targets.
+     * If the difference is less than 5% of nutrition target it will be considered adequate
+     * @param Meal $meal
+     * @param MealType $mealType
+     * @return array
+     */
+    private function getAdvicesByMealAndMealType(Meal $meal, MealType $mealType)
+    {
+        $calorieDiff = $meal->calories - $mealType->calories;
+        $proteinsDiff = $meal->proteins - $mealType->proteins;
+        $fatsDiff = $meal->fats - $mealType->fats;
+        $carbohydratesDiff = $meal->carbohydrates - $mealType->carbohydrates;
+
+        $advices = [];
+
+        if(abs($calorieDiff) > $mealType->calories * 0.05)
+        {
+            $diff = $calorieDiff > 0? 'exceeds' : 'lacks';
+            $advices[] = "Meal {$diff} the amount of calories in {$calorieDiff}";
+        }
+
+        if(abs($proteinsDiff) > $mealType->proteins * 0.05)
+        {
+            $diff = $proteinsDiff > 0? 'exceeds' : 'lacks';
+            $advices[] = "Meal {$diff} the amount of proteins in {$proteinsDiff}";
+        }
+
+        if(abs($fatsDiff) > $mealType->fats * 0.05)
+        {
+            $diff = $fatsDiff > 0? 'exceeds' : 'lacks';
+            $advices[] = "Meal {$diff} the amount of fats in {$fatsDiff}";
+        }
+
+        if(abs($carbohydratesDiff) > $mealType->carbohydrates * 0.05)
+        {
+            $diff = $carbohydratesDiff > 0? 'exceeds' : 'lacks';
+            $advices[] = "Meal {$diff} the amount of carbohydrates in {$carbohydratesDiff}";
+        }
+
+        return $advices;
     }
 
     public function edit($id)
