@@ -1,12 +1,10 @@
 @extends('layouts.app')
 
 @section('content')
-    <div class="container">
+    <div class="container ">
         <div class="page-header">
-            <h1>Meal #{{ $meal->id }}: {{$meal->name}}</h1>
-
-            {!! Form::open(['url' => route('meals.destroy', $meal->id), 'method' => 'delete', 'class' => 'form-inline', 'onsubmit' => "return confirm('Delete? Are you sure?')? true:false;"]) !!}
-                <div class="btn-group pull-right" role="group">
+            <div class="btn-toolbar pull-right">
+                <div class="btn-group" role="group">
                     <a class="btn btn-success btn-secondary" data-toggle="modal" data-target="#add-dish-modal">
                         <i class="glyphicon glyphicon-plus"></i> Add dish
                     </a>
@@ -14,10 +12,17 @@
                         <i class="glyphicon glyphicon-plus"></i> Add food
                     </a>
                     {!! Html::decode(link_to(route('meals.edit', $meal->id), '<i class="glyphicon glyphicon-edit"></i> Edit', ['class' => 'btn btn-warning btn-secondary'])) !!}
-                    <button type="submit" class="btn btn-secondary btn-danger">Delete <i
-                                class="glyphicon glyphicon-trash"></i></button>
+
+                    {!! Form::open(['url' => route('meals.destroy', $meal->id), 'method' => 'delete', 'class' => 'form-inline', 'onsubmit' => "return confirm('Delete? Are you sure?')? true:false;"]) !!}
+                    <button type="submit" class="btn btn-secondary btn-danger">
+                        Delete <i class="glyphicon glyphicon-trash"></i>
+                    </button>
+                    {!! Form::close() !!}
                 </div>
-            {!! Form::close() !!}
+            </div>
+            <h1>
+                Meal #{{ $meal->id }}: {{$meal->name}}
+            </h1>
         </div>
 
         <div class="row">
@@ -65,6 +70,10 @@
                 <h3 class="text-center alert alert-info">This meals contains nothing!</h3>
             </div>
         @endif
+
+        @foreach($advices as $advice)
+            <div class="alert alert-warning">{{ $advice }}</div>
+        @endforeach
 
         {!! link_to(route('meals.index'), 'Back', ['class' => 'btn btn-link']) !!}
     </div>
