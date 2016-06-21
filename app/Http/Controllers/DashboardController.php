@@ -30,9 +30,9 @@ class DashboardController extends Controller
             $meal = $meals->random(1);
             $todayMeals[] = $meal;
             $todayTotals['calories'] += $meal->calories;
-            $todayTotals['proteins'] += $meal->calories;
-            $todayTotals['carbohydrates'] += $meal->calories;
-            $todayTotals['fats'] += $meal->calories;
+            $todayTotals['proteins'] += $meal->proteins;
+            $todayTotals['carbohydrates'] += $meal->carbohydrates;
+            $todayTotals['fats'] += $meal->fats;
         }
 
         return view('dashboard.index', compact('todayMeals', 'todayTotals'));
