@@ -14,11 +14,9 @@ class MealController extends Controller
     const MESSAGE_UPDATED = 'Meal updated successfully';
     const MESSAGE_DELETED = 'Meal deleted successfully';
 
-    public function index()
+    public function index(Requests\CarSearchRequest $request)
     {
-        $meals = Meal::all();
-
-        return view('meals.index', compact('meals'));
+        //
     }
 
     public function create()
@@ -49,7 +47,7 @@ class MealController extends Controller
 
         return redirect()
             ->route('meals.show', $meal->id)
-            ->with(['flash_message' => self::MESSAGE_CREATED]);
+            ->with(['WhateverYouWant' => self::MESSAGE_CREATED]);
     }
 
     public function show($id)

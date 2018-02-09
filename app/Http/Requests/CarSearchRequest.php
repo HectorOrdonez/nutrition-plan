@@ -2,7 +2,9 @@
 
 namespace App\Http\Requests;
 
-class UpdateMealRequest extends Request
+use App\Http\Requests\Request;
+
+class CarSearchRequest extends Request
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -11,7 +13,7 @@ class UpdateMealRequest extends Request
      */
     public function authorize()
     {
-        return true;
+        return $this->user()->isAdmin();
     }
 
     /**
@@ -22,8 +24,7 @@ class UpdateMealRequest extends Request
     public function rules()
     {
         return [
-            'name' => 'min:4',
-            'mealTypeId' => 'required',
+            'color' => $this->getAcceptedColors()
         ];
     }
 }

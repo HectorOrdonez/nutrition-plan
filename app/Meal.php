@@ -105,9 +105,19 @@ class Meal extends Model
             $fats += $mealFood->amount * $mealFood->food->fats / 100;
         }
 
+        $thing = $this->getCarbohydratesAttribute();
+
+        foreach($thing as $othrethin)
+        {
+            $othrethin->
+        }
+
         return $fats;
     }
 
+    /**
+     * @return Meal[]
+     */
     public function getCarbohydratesAttribute()
     {
         $carbohydrates = 0;
